@@ -15,6 +15,7 @@
 #
 Updates function:
 
+<code>
 'use strict';
 
 function updateCompletionStatusAndSubmit() {
@@ -38,4 +39,4 @@ function updateCompletionStatusAndSubmit() {
   }
 }
 
-updateCompletionStatusAndSubmit();
+updateCompletionStatusAndSubmit(); </code>
