@@ -12,10 +12,16 @@
 
 <code>API_1484_11.SetValue('cmi.completion_status','completed');if (document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c")){document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c").submit()};</code>
 
-#
-Updates function:
 
-<code>
+# LMS Completion Status Updater
+
+This script is designed to update the completion status of a course in a Learning Management System (LMS) to "completed". Once the status is updated, it attempts to submit this change if the required elements are present on the page. It's implemented with best practices such as strict mode, error handling, and defensive programming to ensure robust operation.
+
+## Implementation
+
+The script checks for the presence of specific DOM elements before attempting to interact with them, preventing runtime errors. It also uses a try-catch block to handle any unexpected errors gracefully. The functionality is wrapped inside a function to avoid polluting the global namespace, making it reusable in different contexts.
+
+```javascript
 'use strict';
 
 function updateCompletionStatusAndSubmit() {
@@ -39,4 +45,4 @@ function updateCompletionStatusAndSubmit() {
   }
 }
 
-updateCompletionStatusAndSubmit(); </code>
+updateCompletionStatusAndSubmit();
