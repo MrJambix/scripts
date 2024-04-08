@@ -11,3 +11,31 @@
 <p><br /></p>
 
 <code>API_1484_11.SetValue('cmi.completion_status','completed');if (document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c")){document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c").submit()};</code>
+
+#
+Updates function:
+
+'use strict';
+
+function updateCompletionStatusAndSubmit() {
+  try {
+    const apiCallResult = API_1484_11.SetValue('cmi.completion_status', 'completed');
+    console.log('API Call Result:', apiCallResult);
+
+    const courseHeader = document.getElementsByName('courseheader').item(0);
+    if (courseHeader && courseHeader.contentDocument) {
+      const submitButton = courseHeader.contentDocument.getElementById('c');
+      if (submitButton) {
+        submitButton.submit();
+      } else {
+        console.log('Submit button not found.');
+      }
+    } else {
+      console.log('Course header or its document not found.');
+    }
+  } catch (error) {
+    console.error('Error encountered:', error);
+  }
+}
+
+updateCompletionStatusAndSubmit();
