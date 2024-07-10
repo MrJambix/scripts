@@ -10,9 +10,6 @@
 
 <p><br /></p>
 
-<code>API_1484_11.SetValue('cmi.completion_status','completed');if (document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c")){document.getElementsByName("courseheader").item(0).contentDocument.getElementById("c").submit()};</code>
-
-
 # LMS Completion Status Updater
 
 This script is designed to update the completion status of a course in a Learning Management System (LMS) to "completed". Once the status is updated, it attempts to submit this change if the required elements are present on the page. It's implemented with best practices such as strict mode, error handling, and defensive programming to ensure robust operation.
@@ -25,24 +22,30 @@ The script checks for the presence of specific DOM elements before attempting to
 'use strict';
 
 function updateCompletionStatusAndSubmit() {
-  try {
-    const apiCallResult = API_1484_11.SetValue('cmi.completion_status', 'completed');
-    console.log('API Call Result:', apiCallResult);
+    try {
+        // Simulate 5 minutes spent
+        const timeSpent = 300; // time in seconds (5 minutes)
+        API_1484_11.SetValue('cmi.session_time', timeSpent.toString()); // Assuming the API can record session time
 
-    const courseHeader = document.getElementsByName('courseheader').item(0);
-    if (courseHeader && courseHeader.contentDocument) {
-      const submitButton = courseHeader.contentDocument.getElementById('c');
-      if (submitButton) {
-        submitButton.submit();
-      } else {
-        console.log('Submit button not found.');
-      }
-    } else {
-      console.log('Course header or its document not found.');
+        // Set the course to completed
+        const apiCallResult = API_1484_11.SetValue('cmi.completion_status', 'completed');
+        console.log('API Call Result:', apiCallResult);
+
+        // Fetching the course header and submit button elements
+        const courseHeader = document.getElementsByName('courseheader').item(0);
+        if (courseHeader && courseHeader.contentDocument) {
+            const submitButton = courseHeader.contentDocument.getElementById('c');
+            if (submitButton) {
+                submitButton.submit();
+            } else {
+                console.log('Submit button not found.');
+            }
+        } else {
+            console.log('Course header or its document not found.');
+        }
+    } catch (error) {
+        console.error('Error encountered:', error);
     }
-  } catch (error) {
-    console.error('Error encountered:', error);
-  }
 }
 
 updateCompletionStatusAndSubmit();
